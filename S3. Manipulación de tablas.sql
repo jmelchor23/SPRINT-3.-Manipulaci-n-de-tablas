@@ -12,11 +12,11 @@ CREATE TABLE IF NOT EXISTS credit_card (
         cvv INT,
         expiring_date VARCHAR(20)
         );
-        
-ALTER TABLE transaction
+
+ALTER TABLE `transaction`
 ADD CONSTRAINT fk_creditcard_transaction
 FOREIGN KEY (credit_card_id)    
-REFERENCES credit_card(id);				
+REFERENCES credit_card(id);	
 
 # NIVEL 1 - EJERCICIO 2
 
@@ -149,6 +149,13 @@ DROP COLUMN website;
 ALTER TABLE data_user
 CHANGE COLUMN email personal_email VARCHAR(150);
 
+-- PASO 9. Cambio de la cantidad de caracteres en las columnas id de la tabla credit_card y credit_card_id de la tabla transaction.
+ALTER TABLE credit_card
+MODIFY id VARCHAR(20);
+
+ALTER TABLE transaction
+MODIFY credit_card_id VARCHAR(20);
+
 
 # NIVEL 3 - EJERCICIO 2.
 /* Crear una vista llamada "InformeTecnico" que contenga la siguiente información:
@@ -180,4 +187,3 @@ FROM informetecnico
 ORDER BY ID_de_la_transaccion DESC;  /* He dejado el order by fuera de la vista porque, según la documentación, no se garantiza el orden de la consulta
 									al momento de llamar la vista, el resultado proviene de la ultima SELECT (la vista actúa como subquery). */
 								
-						
